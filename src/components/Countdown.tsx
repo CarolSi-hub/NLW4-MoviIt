@@ -7,6 +7,7 @@ export function Countdown() {
 
   const [time, setTime] = useState(0.1 * 60);
   const [isActive, setActive] = useState(false);
+  const [hasFinished, setHasFinished] = useState(false);
 
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
@@ -29,6 +30,9 @@ export function Countdown() {
       countdownTimeout = setTimeout(()=>{
         setTime(time - 1);
       }, 1000);     
+    } else if (isActive && time === 0) {
+      setHasFinished(true);
+      setActive(false);
     }
   }, [isActive, time])
 
@@ -45,25 +49,36 @@ export function Countdown() {
           <span>{secondRigth}</span>
         </div>
       </div>
-
-
-      { isActive ? (
+      {hasFinished ? (
       <button
-        type="button"
-        className={`${styles.countdownButton} ${styles.countdownButtonActive}`}
-        onClick={resetCountdown}
-      >
-        Suspend
+        disabled
+          type="button"
+          className={styles.countdownButton}
+        >
+          End
       </button>
       ) : (
-      <button
-        type="button"
-        className={styles.countdownButton}
-        onClick={startCountdown}
-      >
-        Start
-      </button>)
-    }     
+        <>
+            { isActive ? (
+              <button
+                type="button"
+                className={`${styles.countdownButton} ${styles.countdownButtonActive}`}
+                onClick={resetCountdown}
+              >
+                Suspend
+              </button>
+            ) : (
+                <button
+                  type="button"
+                  className={styles.countdownButton}
+                  onClick={startCountdown}
+                >
+                  Start
+                </button>)
+            } 
+        </>
+      )
+      }          
     </div>
   )
 }
