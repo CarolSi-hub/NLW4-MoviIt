@@ -4,23 +4,23 @@ import styles from '../styles/components/ChallengeBox.module.css';
 
 export function ChallengeBox() {
 
-  const { challenge } = useContext(ChallengesContext);
+  const { activeChallenge, resetChallenge } = useContext(ChallengesContext);
 
-  const hasActiveChallange = true;
   return(
     <div className={styles.challengeBoxContainer}>
-      { hasActiveChallange ? (
+      { activeChallenge ? (
         <div className={styles.challengeBoxContainerActive}>
-          <header>Ganhe 400 xp</header>
+          <header>Ganhe { activeChallenge.amount } xp</header>
           <main>
-            <img src="icons/body.svg" alt="body" />
+            <img src={`icons/${activeChallenge.type}.svg`} alt="body" />
             <strong>Novo desafio</strong>
-            <p>Get up and walk for 3 minutes</p>
+            <p>{ activeChallenge.description }</p>
           </main>
           <footer>
             <button 
             type="button"
             className={styles.failedButton}
+            onClick={resetChallenge}
             >
               Failed
               </button>
