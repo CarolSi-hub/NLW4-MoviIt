@@ -1,6 +1,10 @@
+import { useContext } from 'react';
+import { ChallengesContext } from '../contexts/ChallangesContext';
 import styles from '../styles/components/ChallengeBox.module.css';
 
 export function ChallengeBox() {
+
+  const { challenge } = useContext(ChallengesContext);
 
   const hasActiveChallange = true;
   return(
@@ -16,13 +20,13 @@ export function ChallengeBox() {
           <footer>
             <button 
             type="button"
-            className={styles.challengeBoxContainerFailedButton}
+            className={styles.failedButton}
             >
               Failed
               </button>
             <button 
             type="button"
-            className={styles.challengeBoxContainerCompletedButton}
+            className={styles.completedButton}
             >
               Completed
             </button>
