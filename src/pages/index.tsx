@@ -1,29 +1,35 @@
-import { CompletedChallenges } from '../components/CompletedChallenges';
-import { Countdown } from '../components/Countdown';
-import { ExperienceBar } from '../components/ExperienceBar';
-import { Profile } from '../components/Profile';
+import Router from 'next/router'
+import { useContext } from 'react';
 import Head from 'next/head';
-import styles from '../styles/pages/Home.module.css';
-import { ChallengeBox } from '../components/ChallengeBox';
+import styles from '../styles/pages/Login.module.css';
+import LoginForm from '../components/LoginForm'
+import { LoginContext } from '../contexts/LoginContext';
 
 export default function Home() {
-  return (
+
+  const { setLocalStorage } = useContext(LoginContext);
+
+  function handleSubmitLogin() {
+    setLocalStorage();
+    Router.push('/_game');
+  }
+
+  return(
     <div className={ styles.container }>
       <Head>
-        <title>Start | moveit</title>
+        <title>Welcome | MoveIt</title>
       </Head>
-        <ExperienceBar />
-        <section>
-          <div>
-            <Profile />
-            <CompletedChallenges />
-            <Countdown />
-          </div>
-          <div>
-            <ChallengeBox />
-          </div>
-        </section>
+      <img src="https://previews.123rf.com/images/tvoukent/tvoukent1905/tvoukent190500153/127834655-the-25-minutes-or-seconds-stopwatch-vector-icon-digital-timer-clock-and-watch-timer-modern-style-in-.jpg" />
+      <section>
+        <LoginForm />
+        <button
+        className={ styles.loginButton }
+          type="button"
+          onClick={() => handleSubmitLogin()}
+        >
+          Go!
+      </button>
+      </section>    
     </div>
-
   )
 }

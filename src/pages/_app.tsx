@@ -1,15 +1,11 @@
 import '../styles/Global.css'
-import { ChallengesProvider } from '../contexts/ChallangesContext';
-import { CountdownProvider } from '../contexts/CountdownContex';
+import { LoginProvider } from '../contexts/LoginContext';
 
-function MyApp({ Component, pageProps }) { 
+export default function MyApp({ Component, pageProps }) { 
   return (
-    <ChallengesProvider>
-      <CountdownProvider>
-      <Component {...pageProps} />
-      </CountdownProvider>
-    </ChallengesProvider> 
+    <LoginProvider>     
+      <Component {...pageProps} />      
+    </LoginProvider>
   )  
 }
 
-export default MyApp

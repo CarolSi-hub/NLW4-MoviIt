@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { homedir } from \"os\";\nexport default homedir();","map":{"version":3,"sources":["/home/ana/Documentos/NLW4/NLW4-MoviIt/src/pages/index.tsx"],"names":["homedir"],"mappings":"AAAA,SAASA,OAAT,QAAwB,IAAxB;AAEA,eAAeA,OAAO,EAAtB","sourcesContent":["import { homedir } from \"os\";\n\nexport default homedir()"]},"metadata":{},"sourceType":"module"}
