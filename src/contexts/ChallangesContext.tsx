@@ -26,6 +26,7 @@ interface ChallengesContextData {
   startNewChallenge: () => void,
   resetChallenge: () => void,
   experienceToNextLevel: number;
+  closeLevelUpModal: () => void;
 }
 
 export function ChallengesProvider({ children, ...rest }: ChallangesProviderProps) {
@@ -34,6 +35,9 @@ export function ChallengesProvider({ children, ...rest }: ChallangesProviderProp
   const [currentXP, setCurrentXP] = useState(rest.currentXP ? rest.currentXP : 0);
   const [completedChallenges, setCompletedChallenges] = useState(rest.completedChallenges ? rest.completedChallenges : 0);
   const [activeChallenge, setActiveCHallenge] = useState(null);
+  const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(false);
+
+  const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
 
   useEffect(() => {
     Notification.requestPermission();
@@ -47,6 +51,7 @@ export function ChallengesProvider({ children, ...rest }: ChallangesProviderProp
 
   function levelUp() {
     setLevel(level + 1);
+    setIsLevelUpModalOpen(true);
   }
 
   function completedChallenge() {
@@ -65,6 +70,14 @@ export function ChallengesProvider({ children, ...rest }: ChallangesProviderProp
     setCompletedChallenges(completedChallenges + 1);
   }
 
+  function closeLevelUpModal() {
+    setIsLevelUpModalOpen(false);
+  }
+
+  function resetChallenge() {
+    setActiveCHallenge(null);
+  } 
+
   function startNewChallenge() {
     const randomChallengeIndex = Math.floor(Math.random() * challenges.length);
     const challenge = challenges[randomChallengeIndex];
@@ -74,14 +87,8 @@ export function ChallengesProvider({ children, ...rest }: ChallangesProviderProp
       new Notification('New Challenge!'), {
         body: `Valendo ${challenge.amount}xp!`
       }
-    }
-  }
-
-  function resetChallenge() {
-    setActiveCHallenge(null);
-  }
-
-  const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
+    } new Audio('/notification.mp3').play();
+  }  
 
   return (
     <ChallengesContext.Provider value={{
@@ -93,6 +100,7 @@ export function ChallengesProvider({ children, ...rest }: ChallangesProviderProp
       activeChallenge,
       resetChallenge,
       experienceToNextLevel,
+      closeLevelUpModal,
     }}
     >
       {children}
