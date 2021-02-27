@@ -74,7 +74,7 @@ export function ChallengesProvider({ children, ...rest }: ChallangesProviderProp
       new Notification('New Challenge!'), {
         body: `Valendo ${challenge.amount}xp!`
       }
-    }
+    } new Audio('/notification.mp3').play();
   }
 
   function resetChallenge() {
