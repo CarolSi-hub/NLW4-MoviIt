@@ -1,17 +1,21 @@
-import { useContext, useState, useEffect } from 'react';
-import { ChallengesContext } from '../contexts/ChallangesContext';
-import { CountdownContext } from '../contexts/CountdownContex';
+import { useChallenges } from "../hooks/UseChallenges";
+import { useCountdown } from "../hooks/UseCountdown";
 import styles from '../styles/components/Countdown.module.css'
 
 
 export function Countdown() {
-  
-  const { minutes, seconds, hasFinished, isActive, resetCountdown, startCountdown } = useContext(CountdownContext);
 
+  const {
+    isActive,
+    hasFinished,
+    resetCountdown,
+    startCountdown,
+    minutes,
+    seconds
+  } = useCountdown();
+  
   const [minuteLeft, minuteRigth] = String(minutes).padStart(2, '0').split('');
-  const [secondLeft, secondRigth] = String(seconds).padStart(2, '0').split('');
-
-  
+  const [secondLeft, secondRigth] = String(seconds).padStart(2, '0').split('');  
 
   return(
     <div>
