@@ -1,4 +1,3 @@
-import { useChallenges } from "../hooks/UseChallenges";
 import { useCountdown } from "../hooks/UseCountdown";
 import styles from '../styles/components/Countdown.module.css'
 
