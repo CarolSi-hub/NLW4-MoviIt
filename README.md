@@ -6,7 +6,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ### Desktop 
 
-<img src="./movit-images/desktop-login.png" width=400 /> <> <img src="./movit-images/desktop-main.png" width=400 />
+<img src="./moveit-images/desktop-login.png" width=400 /> <> <img src="./moveit-images/desktop-main.png" width=400 />
 
 
 
